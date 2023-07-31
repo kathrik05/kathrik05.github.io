@@ -7,6 +7,7 @@
     <title>Untitled</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -56,9 +57,9 @@
                         <div class="card mb-5">
                             <div class="card-body p-sm-5">
                                 <h2 class="text-center mb-4" style="font-family: Montserrat, sans-serif;font-weight: bold;">Contact us</h2>
-                                <form id = "gform" method="post" action="https://script.google.com/macros/s/AKfycbxd6t2HpWDivldYgZiehgB5JIZGaO2ZjsLi4zSZwO0Y7Z_0AcX0cfEFLg_iwtc6xLpF/exec">
+                                <form id = "submit-form" action="">
                                     <div class="mb-3"><input class="form-control" type="text" id="name-2" name="name" placeholder="Name" style="font-family: Poppins, sans-serif;"></div>
-                                    <div class="mb-3"><input class="form-control" type="email" id="email-2" name="email" placeholder="Email" style="font-family: Poppins, sans-serif;"></div>
+                                    <div class="mb-3"><input class="form-control" type="number" id="number-2" name="number" placeholder="Number" style="font-family: Poppins, sans-serif;"></div>
                                     <div class="mb-3"><textarea class="form-control" id="message-2" name="message" rows="6" placeholder="Purpose" style="font-family: Poppins, sans-serif;"></textarea></div>
                                     <div><button class="btn btn-primary d-block w-100" type="submit" style="background: #212223;font-family: Poppins, sans-serif;font-weight: bold;">Send </button></div>
                                 </form>
@@ -103,6 +104,25 @@
         </div>
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $("#submit-form").submit((e)=>{
+            e.preventDefault()
+            $.ajax({
+                url:"https://script.google.com/macros/s/AKfycbxd6t2HpWDivldYgZiehgB5JIZGaO2ZjsLi4zSZwO0Y7Z_0AcX0cfEFLg_iwtc6xLpF/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
+                success:function (response){
+                    alert("Form submitted successfully")
+                    window.location.reload()
+                    //window.location.href="https://google.com"
+                },
+                error:function (err){
+                    alert("Something Error")
+    
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
